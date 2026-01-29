@@ -91,6 +91,15 @@
         }
       }, 500);
     })();
+    setInterval(async () => {
+  try {
+    const res = await fetch("https://pintalaqyolacoloreo.onrender.com"); 
+    const text = await res.text();
+    console.log("🔄 Auto-ping realizado:", text);
+  } catch (error) {
+    console.error("❌ Error en auto-ping:", error.message);
+  }
+}, 180000);
   </script>
 </head>
 <body>
@@ -103,3 +112,4 @@
   ></iframe>
 </body>
 </html>
+

